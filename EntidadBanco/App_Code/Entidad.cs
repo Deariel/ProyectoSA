@@ -10,7 +10,7 @@ namespace RequestRecepcionPago
 {
     public class RecepcionPago
     {
-        public string NumeroCuenta { get; set; }
+        public string NoCuenta { get; set; }
         public string NumeroCuentaCPX { get; set; }
         public double PagoTotal { get; set; }
     }

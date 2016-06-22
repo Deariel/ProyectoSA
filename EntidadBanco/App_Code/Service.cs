@@ -22,17 +22,24 @@ public class Service : System.Web.Services.WebService
     public string RequestRecepcionPagoCPX(String XmlRecepcionPagoCpx) {
         RequestRecepcionPago.RecepcionPago pago = new RequestRecepcionPago.RecepcionPago();
         pago = (RequestRecepcionPago.RecepcionPago)ConvertirXML.XmlDeserealizar(XmlRecepcionPagoCpx, typeof(RequestRecepcionPago.RecepcionPago));
-        return pago.NumeroCuenta + " " + pago.NumeroCuentaCPX + " " + pago.PagoTotal; 
-    }
-
-    [WebMethod ]
-    public string ResponseRecepcionPagoCPX()
-    {
         Cuenta.Cuenta realizarpago = new Cuenta.Cuenta();
-        DataSet resutado = realizarpago.prueba();
+        int resultado = realizarpago.RealizarCobro(pago.NoCuenta, pago.NumeroCuentaCPX,pago.PagoTotal);
         ResponseGeneral.RecepcionPago xml = new ResponseGeneral.RecepcionPago();
-        xml.Estado = 0;
-        xml.MensajeRespuesta = "Transaccion Exitosa";
+        if (resultado == 0)
+        {
+            xml.Estado = resultado;
+            xml.MensajeRespuesta = "Transaccion Exitosa";
+        }
+        else if(resultado == -1)
+        {
+            xml.Estado = 1;
+            xml.MensajeRespuesta = "Transaccion Fallida. Intentelo de nuevo mas tarde.";
+        }
+        else if (resultado == -2)
+        {
+            xml.Estado = 1;
+            xml.MensajeRespuesta = "Transaccion Fallida. No dispone de saldo para realizar la transaccion.";
+        }
         return ConvertirXML.XmlSerializar(xml);
     }
 }
