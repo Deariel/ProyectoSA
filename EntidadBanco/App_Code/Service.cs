@@ -22,14 +22,14 @@ public class Service : System.Web.Services.WebService
     public string RequestRecepcionPagoCPX(String XmlRecepcionPagoCpx) {
         RequestRecepcionPago.RecepcionPago pago = new RequestRecepcionPago.RecepcionPago();
         pago = (RequestRecepcionPago.RecepcionPago)ConvertirXML.XmlDeserealizar(XmlRecepcionPagoCpx, typeof(RequestRecepcionPago.RecepcionPago));
-        ConexionBanco.Conexion conexion = new ConexionBanco.Conexion();
-        DataSet resultado = conexion.SelectDataSet("select * from usuario", "Usuario");
         return pago.NumeroCuenta + " " + pago.NumeroCuentaCPX + " " + pago.PagoTotal; 
     }
 
     [WebMethod ]
     public string ResponseRecepcionPagoCPX()
     {
+        ConexionBanco.Conexion conexion = new ConexionBanco.Conexion();
+        DataSet resultado = conexion.SelectDataSet("select * from usuario", "Usuario");
         ResponseGeneral.RecepcionPago xml = new ResponseGeneral.RecepcionPago();
         xml.Estado = 0;
         xml.MensajeRespuesta = "Transaccion Exitosa";

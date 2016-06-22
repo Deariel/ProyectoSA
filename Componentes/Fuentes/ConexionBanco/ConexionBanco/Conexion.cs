@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using System.Xml;
 
 namespace ConexionBanco
 {
     public class Conexion
     {
-        private string connection = "Data Source = DENNIS\\MSSQLSERVER2;Integrated Security = true; Initial Catalog = ENTIDAD_BANCO;";
+        private string connection = string.Empty;
         private SqlConnection connect;
         private SqlCommand command;
         private SqlDataAdapter da;
@@ -18,6 +19,13 @@ namespace ConexionBanco
 
         public Conexion()
         {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("C:/ProyectoSA/ArchivoConexion/conexion.xml");
+            XmlNode child = doc.SelectSingleNode("/Conexion/ConexionBanco");
+            if (child != null)
+            {
+                connection = child.InnerText;
+            }
             connect = new SqlConnection();
         }
         private SqlConnection connecttodb()
