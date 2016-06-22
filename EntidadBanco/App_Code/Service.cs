@@ -42,4 +42,39 @@ public class Service : System.Web.Services.WebService
         }
         return ConvertirXML.XmlSerializar(xml);
     }
+
+    [WebMethod]
+    public string RequestCrearCuenta(string XmlDatosUsuario)
+    {
+        RequestCreacionCuenta.CreacionCuenta datosCuenta;
+        datosCuenta = (RequestCreacionCuenta.CreacionCuenta)ConvertirXML.XmlDeserealizar(XmlDatosUsuario, typeof(RequestCreacionCuenta.CreacionCuenta));
+        Cuenta.Cuenta realizarCreacionCuenta = new Cuenta.Cuenta();
+
+        string NumeroCuenta = realizarCreacionCuenta.CrearCuenta(datosCuenta.DatosPersonales.PrimerNombre,
+                                                                 datosCuenta.DatosPersonales.SegundoNombre,
+                                                                 datosCuenta.DatosPersonales.PrimerApellido,
+                                                                 datosCuenta.DatosPersonales.SegundoApellido,
+                                                                 datosCuenta.DatosPersonales.FechaNacimiento,
+                                                                 datosCuenta.DatosPersonales.Telefono,
+                                                                 datosCuenta.DatosPersonales.Direccion,
+                                                                 datosCuenta.Cuenta.TipoCuenta,
+                                                                 datosCuenta.Cuenta.Password,
+                                                                 datosCuenta.Cuenta.NoTarjeta,
+                                                                 datosCuenta.Cuenta.Saldo);
+
+        ResponseGeneral.CreacionCuenta xml = new ResponseGeneral.CreacionCuenta ();
+        if (NumeroCuenta.Equals("-1"))
+        {
+            xml.Estado = 1;
+            xml.MensajeRespuesta = "Transaccion Fallida. Intentelo de nuevo mas tarde.";
+            return ConvertirXML.XmlSerializar(xml);
+        }
+        else
+        {
+            xml.Estado = 0;
+            xml.MensajeRespuesta = "Transaccion Exitosa.";
+            xml.NumCuenta = NumeroCuenta;
+            return ConvertirXML.XmlSerializar(xml);
+        }
+    }
 }
