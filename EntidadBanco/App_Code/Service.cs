@@ -28,8 +28,8 @@ public class Service : System.Web.Services.WebService
     [WebMethod ]
     public string ResponseRecepcionPagoCPX()
     {
-        ConexionBanco.Conexion conexion = new ConexionBanco.Conexion();
-        DataSet resultado = conexion.SelectDataSet("select * from usuario", "Usuario");
+        Cuenta.Cuenta realizarpago = new Cuenta.Cuenta();
+        DataSet resutado = realizarpago.prueba();
         ResponseGeneral.RecepcionPago xml = new ResponseGeneral.RecepcionPago();
         xml.Estado = 0;
         xml.MensajeRespuesta = "Transaccion Exitosa";
