@@ -18,8 +18,18 @@ public class Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string HelloWorld() {
-        return "Hello World";
+    public string RequestRecepcionPagoCPX(String XmlRecepcionPagoCpx) {
+        RequestRecepcionPago.RecepcionPago pago = new RequestRecepcionPago.RecepcionPago();
+        pago = (RequestRecepcionPago.RecepcionPago)ConvertirXML.XmlDeserealizar(XmlRecepcionPagoCpx, typeof(RequestRecepcionPago.RecepcionPago));
+        return pago.NumeroCuenta + " " + pago.NumeroCuentaCPX + " " + pago.PagoTotal; 
     }
-    
+
+    [WebMethod ]
+    public string ResponseRecepcionPagoCPX()
+    {
+        ResponseGeneral.RecepcionPago xml = new ResponseGeneral.RecepcionPago();
+        xml.Estado = 0;
+        xml.MensajeRespuesta = "Transaccion Exitosa";
+        return ConvertirXML.XmlSerializar(xml);
+    }
 }
