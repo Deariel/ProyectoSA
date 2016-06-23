@@ -7,5 +7,9 @@ namespace GestionSat
 {
     public class Class1
     {
+        public string CrearContribuyente(String NombreContribuyente)
+        {
+            return NombreContribuyente;
+        }
     }
 }

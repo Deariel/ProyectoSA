@@ -22,7 +22,7 @@ public class Service : System.Web.Services.WebService
         RequestContribuyente.CrearContribuyente contribuyente = new RequestContribuyente.CrearContribuyente ();
         contribuyente = (RequestContribuyente.CrearContribuyente)ConvertirXML.XmlDeserealizar(xmlContribuyente, typeof(RequestContribuyente.CrearContribuyente));
         GestionSat.Class1 crearContribuyente = new GestionSat.Class1();
-        string nitContribuyente = "7821998-1";//contribuyente();
+        string nitContribuyente = crearContribuyente.CrearContribuyente("7821998-1");
         ResponseContribuyente.CrearContribuyente xml = new ResponseContribuyente.CrearContribuyente();
         if (!nitContribuyente.Equals("-1"))
         {
