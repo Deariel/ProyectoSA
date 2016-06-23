@@ -40,7 +40,13 @@ public class Service : System.Web.Services.WebService
             xml.Estado = 1;
             xml.MensajeRespuesta = "Transaccion Fallida. No dispone de saldo para realizar la transaccion.";
         }
-        return ConvertirXML.XmlSerializar(xml);
+        
+        //Guardar Transaccion en BitacoraBanco
+        Bitacora.Class1 transaccion = new Bitacora.Class1();
+        String Respuesta = ConvertirXML.XmlSerializar(xml);
+        transaccion.InsertarTransaccion(Respuesta, XmlRecepcionPagoCpx, "", "RequestRecepcionPagoCPX");
+
+        return Respuesta;
     }
 
     [WebMethod]
@@ -61,20 +67,25 @@ public class Service : System.Web.Services.WebService
                                                                  datosCuenta.Cuenta.Password,
                                                                  datosCuenta.Cuenta.NoTarjeta,
                                                                  datosCuenta.Cuenta.Saldo);
-
+                
         ResponseGeneral.CreacionCuenta xml = new ResponseGeneral.CreacionCuenta ();
         if (NumeroCuenta.Equals("-1"))
         {
             xml.Estado = 1;
             xml.MensajeRespuesta = "Transaccion Fallida. Intentelo de nuevo mas tarde.";
-            return ConvertirXML.XmlSerializar(xml);
         }
         else
         {
             xml.Estado = 0;
             xml.MensajeRespuesta = "Transaccion Exitosa.";
             xml.NumCuenta = NumeroCuenta;
-            return ConvertirXML.XmlSerializar(xml);
         }
+
+        //Guardar Transaccion en BitacoraBanco
+        Bitacora.Class1 transaccion = new Bitacora.Class1();
+        String Respuesta = ConvertirXML.XmlSerializar(xml);
+        transaccion.InsertarTransaccion(Respuesta, XmlDatosUsuario,"", "RequestCrearCuenta");
+
+        return Respuesta;
     }
 }
