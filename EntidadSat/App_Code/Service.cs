@@ -50,6 +50,10 @@ public class Service : System.Web.Services.WebService
     [WebMethod]
     public ClaseMaestraClass ValidacionManifiestoArancelario(ClaseMaestraClass Manifiesto)
     {
+        //se crea un formulario para el manifiesto
+        FormularioSat.Class1 formulario = new FormularioSat.Class1();
+        formulario.InsertarFormulario(Manifiesto);
+
         double dbleMontoPago = 0.0;
         foreach (DefinicionItem aItem in Manifiesto.Detalle)
         {
@@ -59,4 +63,11 @@ public class Service : System.Web.Services.WebService
         return Manifiesto;
     }
 
+    [WebMethod]
+    public void ingresarFormulario(int Manifiesto)
+    {
+        //Guardar Transaccion en BitacoraSat
+        
+
+    }
 }
