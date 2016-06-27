@@ -1,5 +1,3 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Conexion>
-	<ConexionBanco>Data Source = AIROH-LAPTOP;Integrated Security = true; Initial Catalog = ENTIDAD_BANCO;</ConexionBanco>
-	<ConexionSat>Data Source = AIROH-LAPTOP;Integrated Security = true; Initial Catalog = ENTIDAD_SAT;</ConexionSat>
 </Conexion>
