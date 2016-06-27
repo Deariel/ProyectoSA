@@ -23,6 +23,7 @@ public class ConvertirXML
         }
         catch (Exception ex)
         {
+            Console.WriteLine("El errror se debe a: "+ex.ToString());
             //Handle Exception Code
         }
         finally
@@ -51,6 +52,7 @@ public class ConvertirXML
         }
         catch (Exception exp)
         {
+            Console.WriteLine("El errror se debe a: " + exp.ToString());
             //Handle Exception Code
         }
         finally
