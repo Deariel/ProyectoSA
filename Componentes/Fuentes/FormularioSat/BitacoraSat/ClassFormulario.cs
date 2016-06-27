@@ -26,5 +26,14 @@ namespace FormularioSat
             return Int32.Parse(Codigo);
         }
 
+        public int ConsultarEstadoFormulario(int NumFormulario)
+        {
+            ConexionSat.Conexion conexion = new ConexionSat.Conexion();
+            String sql;
+            sql = "SELECT estado from Formulario where NumeroFormulario = " + NumFormulario + ")";
+            String Codigo = conexion.executecommand(sql).ToString();
+            return Int32.Parse(Codigo);
+        }
+
     }
 }

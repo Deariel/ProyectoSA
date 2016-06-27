@@ -70,4 +70,15 @@ public class Service : System.Web.Services.WebService
         
 
     }
+
+    [WebMethod]
+    public ClaseMaestraClass RequestEstadoFormulario(ClaseMaestraClass Formulario)
+    {
+        //Se revisa en la base de datos de sat si el numero de formulario ya esta pagado.
+        ClaseMaestraClass respuesta = new ClaseMaestraClass();
+        FormularioSat.Class1 consultar = new FormularioSat.Class1();
+        int estado = consultar.ConsultarEstadoFormulario(Formulario.NumeroFormulario);
+        respuesta.Estado = estado; //0 fallido, 1 exitoso 
+        return Formulario;
+    }
 }
