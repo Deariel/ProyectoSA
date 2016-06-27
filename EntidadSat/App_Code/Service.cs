@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using ClaseMaestra;
+using Item;
 
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -43,5 +45,29 @@ public class Service : System.Web.Services.WebService
 
         return Respuesta;
     }
-    
+
+
+    [WebMethod]
+    public ClaseMaestraClass ValidacionManifiestoArancelario(ClaseMaestraClass Manifiesto)
+    {
+        //se crea un formulario para el manifiesto
+        FormularioSat.Class1 formulario = new FormularioSat.Class1();
+        formulario.InsertarFormulario(Manifiesto);
+
+        double dbleMontoPago = 0.0;
+        foreach (DefinicionItem aItem in Manifiesto.Detalle)
+        {
+            dbleMontoPago = dbleMontoPago + aItem.Cantidad * (aItem.precio * aItem.PorcentajeArancelIndiviual / 100);
+        }
+        Manifiesto.Monto = dbleMontoPago;
+        return Manifiesto;
+    }
+
+    [WebMethod]
+    public void ingresarFormulario(int Manifiesto)
+    {
+        //Guardar Transaccion en BitacoraSat
+        
+
+    }
 }

@@ -1,0 +1,45 @@
+Public class ComplexType
+{
+int Tansacion=Null
+int Categoria=Null
+int PorcentajeArancelIndiviual=Null
+int public int NumeroManifiesto {get;set;} = Null
+Lista item DetalleManifiesto[Imtem]
+double MontoAPagar=Null
+int Estado (0 mal y 1 bien)
+int NumeroCuentaAcreditar=Null
+int NumeroTarjeta=Null
+int TipoPago=1 (0= Efectivo, 1=Tarjeta)
+int NumeroFormulario=Null
+int NumeroOrden=Null
+string HTMLPDF=Null
+}
+
+Public class Item
+{
+string NumeroTracking
+int Cantidad=Null
+int Categoria=Null
+double Peso=Null
+double precio=Null
+string Descripcion=Null
+int PorcentajeArancelIndiviual=Null
+}
+
+ComplexType Envio=New ComplexType();
+Envio.Categoria = 1
+ConsultaArancelCategoria(Envio)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

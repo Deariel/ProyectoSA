@@ -12,7 +12,7 @@ namespace BitacoraSat
                                        String numTransaccion,
                                        String Detalle)
         {
-            ConexionSat.Conexion conexion = new  ConexionSat.Conexion();
+            ConexionSat.Conexion conexion = new ConexionSat.Conexion();
             String sql;
             string datos = "";
             string valores = "";
