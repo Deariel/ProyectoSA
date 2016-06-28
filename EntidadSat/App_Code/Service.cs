@@ -87,6 +87,11 @@ public class Service : System.Web.Services.WebService
             respuesta.Estado = 0;
             respuesta.EstadoFormulario = -1;
         }
+
+        //Guardar Transaccion en BitacoraSat
+        BitacoraSat.Class1 transaccion = new BitacoraSat.Class1();
+        transaccion.InsertarTransaccion(ConvertirXML.XmlSerializar(respuesta), ConvertirXML.XmlSerializar(Formulario), "", "RequestEstadoFormulario");
+
         return respuesta;
     }
 }

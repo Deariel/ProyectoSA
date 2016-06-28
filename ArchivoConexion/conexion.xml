@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Conexion>
-	<ConexionBanco>Data Source = DENNIS;Integrated Security = true; Initial Catalog = ENTIDAD_BANCO;</ConexionBanco>
-	<ConexionSat>Data Source = DENNIS;Integrated Security = true; Initial Catalog = ENTIDAD_SAT;</ConexionSat>
+	<ConexionBanco>Data Source = DENNIS\MSSQLSERVER2;Integrated Security = true; Initial Catalog = ENTIDAD_BANCO;</ConexionBanco>
+	<ConexionSat>Data Source = DENNIS\MSSQLSERVER2;Integrated Security = true; Initial Catalog = ENTIDAD_SAT;</ConexionSat>
+	<ConexionCPXGT>Data Source = DENNIS\MSSQLSERVER2;Integrated Security = true; Initial Catalog = ENTIDAD_CPXGT;</ConexionCPXGT>
 </Conexion>
