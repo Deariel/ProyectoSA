@@ -21,7 +21,7 @@ namespace ClaseMaestra
         public int PorcentajeArancelIndiviual { get; set; }
         public double Monto { get; set; }
         public List<DefinicionItem> Detalle = new List<DefinicionItem>();
-        public int Tansacion { get; set; }
+        public int Transacion { get; set; }
         public int NumeroManifiesto { get; set; }
         public int Estado { get; set; }
         public int NumeroCuentaAcreditar { get; set; }
@@ -30,5 +30,6 @@ namespace ClaseMaestra
         public int NumeroFormulario { get; set; }
         public int NumeroOrden { get; set; }
         public string HTMLPDF { get; set; }
+        public int EstadoFormulario { get; set; }
     }
 }

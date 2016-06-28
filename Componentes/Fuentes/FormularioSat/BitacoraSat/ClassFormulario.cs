@@ -30,9 +30,16 @@ namespace FormularioSat
         {
             ConexionSat.Conexion conexion = new ConexionSat.Conexion();
             String sql;
-            sql = "SELECT estado from Formulario where NumeroFormulario = " + NumFormulario + ")";
-            String Codigo = conexion.executecommand(sql).ToString();
-            return Int32.Parse(Codigo);
+            sql = "SELECT Estado from Formulario where idFormulario = " + NumFormulario;
+            String Codigo = conexion.selectstring(sql);
+            if (Codigo.Trim().Equals(""))
+            {
+                return -1;
+            }
+            else
+            {
+                return Int32.Parse(Codigo);
+            }
         }
 
     }

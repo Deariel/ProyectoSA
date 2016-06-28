@@ -78,7 +78,15 @@ public class Service : System.Web.Services.WebService
         ClaseMaestraClass respuesta = new ClaseMaestraClass();
         FormularioSat.Class1 consultar = new FormularioSat.Class1();
         int estado = consultar.ConsultarEstadoFormulario(Formulario.NumeroFormulario);
-        respuesta.Estado = estado; //0 fallido, 1 exitoso 
-        return Formulario;
+        if (estado >= 0)
+        {
+            respuesta.Estado = 1;
+            respuesta.EstadoFormulario = estado;
+        }else
+        {
+            respuesta.Estado = 0;
+            respuesta.EstadoFormulario = -1;
+        }
+        return respuesta;
     }
 }

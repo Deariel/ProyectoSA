@@ -13,6 +13,7 @@ int TipoPago=1 (0= Efectivo, 1=Tarjeta)
 int NumeroFormulario=Null
 int NumeroOrden=Null
 string HTMLPDF=Null
+int EstadoFormulario (0 nopagado y 1 pagado)
 }
 
 Public class Item
